@@ -1,5 +1,9 @@
 {{ define "main" }}
     <h1>{{ .Title }}</h1>
 	<time datetime="{{ .Date }}" itemprop="datePublished">{{ .Date.Format "January 2, 2006" }}</time>
-	{{ .Content }} 	               			  
+	{{ .Content }}
+	<br>
+	<hr style="height:2px;border-width:0;color:gray;background-color:gray">
+	<h3>comments:</h3>
+	{{ partial "comments.html" . }}
 {{ end }}
