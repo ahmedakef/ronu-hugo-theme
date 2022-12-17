@@ -1,0 +1,22 @@
+{{ if (isset .Site.Params.Comments "enabled") }}
+  {{ .Scratch.Set "enable_comments" .Site.Params.Comments.Enabled }}
+{{ else }}
+  {{ .Scratch.Set "enable_comments" false }}
+{{ end }}
+
+
+{{ $enable_comments := .Scratch.Get "enable_comments" }}
+{{ if $enable_comments }}
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <div id="comment-section"></div>
+  <script>
+  initComments({
+    node: document.getElementById("comment-section"),
+    defaultHomeserverUrl: "https://matrix.cactus.chat:8448",
+    serverName: "cactus.chat",
+    siteName: "{{ .Site.Params.Comments.CactusSiteName }}",
+    commentSectionId: "{{ .RelPermalink }}"
+  })
+  </script>
+{{ end }}
